@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Repository\User\APIPostRepository;
+use App\Repository\User\APIPostRepositoryInterface;
 use Illuminate\Http\Request;
 
 class APIPostController
 {
-    protected APIPostRepository $apiPostRepository;
-    public function __construct(APIPostRepository $apiPostRepository)
+    protected APIPostRepositoryInterface $apiPostRepository;
+    public function __construct(APIPostRepositoryInterface $apiPostRepository)
     {
         $this->apiPostRepository = $apiPostRepository;
     }

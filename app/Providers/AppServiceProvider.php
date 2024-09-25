@@ -2,6 +2,10 @@
 
 namespace App\Providers;
 
+use App\Repository\CommonRepository;
+use App\Repository\CommonRepositoryInterface;
+use App\Repository\User\APIPostRepository;
+use App\Repository\User\APIPostRepositoryInterface;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +17,15 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        $this->app->bind(
+            CommonRepositoryInterface::class,
+            CommonRepository::class
+        );
+
+        $this->app->bind(
+            APIPostRepositoryInterface::class,
+            APIPostRepository::class
+        );
     }
 
     /**
@@ -23,6 +35,6 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+
     }
 }

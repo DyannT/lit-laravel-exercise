@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\PostRequest;
-use App\Repository\User\APIPostRepository;
+use App\Repository\User\APIPostRepositoryInterface;
 use App\Traits\ImageUploadTrait;
 use Backpack\CRUD\app\Http\Controllers\CrudController;
 use Backpack\CRUD\app\Library\CrudPanel\CrudPanelFacade as CRUD;
@@ -16,7 +16,7 @@ use Illuminate\Http\Request;
  */
 class PostCrudController extends CrudController
 {
-    protected APIPostRepository $apiPostRepository;
+    protected APIPostRepositoryInterface $apiPostRepository;
 
     use \Backpack\CRUD\app\Http\Controllers\Operations\ListOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\CreateOperation;
@@ -30,7 +30,7 @@ class PostCrudController extends CrudController
      * @return void
      */
 
-    public function __construct(APIPostRepository $apiPostRepository)
+    public function __construct(APIPostRepositoryInterface $apiPostRepository)
     {
         parent::__construct();
         $this->apiPostRepository = $apiPostRepository;

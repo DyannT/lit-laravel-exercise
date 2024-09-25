@@ -5,7 +5,7 @@ namespace App\Repository\User;
 use App\Models\Post;
 use App\Repository\CommonRepository;
 
-class APIPostRepository extends CommonRepository
+class APIPostRepository extends CommonRepository implements APIPostRepositoryInterface
 {
     public function __construct(Post $post)
     {
