@@ -88,7 +88,7 @@
             if(checkFormValidity(form)) {
                 saveActionField.val( $saveAction.attr('data-value') );
 
-                $updateId ? submitForm(form, e, $updateId) : form[0].requestSubmit();
+                $updateId ? submitForm(form, e) : form[0].requestSubmit();
             }else{
                 // navigate to the tab where the first error happens
                 changeTabIfNeededAndDisplayErrors(form);
@@ -104,7 +104,7 @@
                     var saveAction = $(this).data('value');
                     saveActionField.val( saveAction );
 
-                    $updateId ? submitForm(form, e, $updateId) : form[0].requestSubmit();
+                    $updateId ? submitForm(form, e) : form[0].requestSubmit();
                 }else{
                     // navigate to the tab where the first error happens
                     changeTabIfNeededAndDisplayErrors(form);
@@ -114,13 +114,13 @@
         });
 
         //Submit form
-        function submitForm(form, event, id) {
+        function submitForm(form, event) {
             event.preventDefault();
 
             var formData = new FormData(form[0]);
 
             $.ajax({
-                url: '/admin/post/' + id,
+                url: form.attr('action'),
                 type: "POST",
                 data: formData,
                 processData: false,
@@ -134,7 +134,7 @@
                                 break;
                             case "save_and_new":
                             case "save_and_preview":
-                                window.location.href = `http://${window.location.host}/${result.redirect_url}`;
+                                window.location.href = result.data ? result.redirect_url : `http://${window.location.host}/${result.redirect_url}`;
                                 break;
                             default:
                                 window.location = $('.btn-back').attr('href');

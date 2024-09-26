@@ -26,6 +26,11 @@ class AppServiceProvider extends ServiceProvider
             APIPostRepositoryInterface::class,
             APIPostRepository::class
         );
+
+        $this->app->bind(
+            \Backpack\PermissionManager\app\Http\Controllers\UserCrudController::class,
+            \App\Http\Controllers\Admin\UserCrudController::class
+        );
     }
 
     /**

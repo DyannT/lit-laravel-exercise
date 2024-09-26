@@ -23,6 +23,7 @@ class PostCrudController extends CrudController
     use \Backpack\CRUD\app\Http\Controllers\Operations\UpdateOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\DeleteOperation;
     use \Backpack\CRUD\app\Http\Controllers\Operations\ShowOperation;
+    use \App\Traits\CrudPermissionTrait;
     use ImageUploadTrait;
     /**
      * Configure the CrudPanel object. Apply settings to all operations.
@@ -42,6 +43,8 @@ class PostCrudController extends CrudController
         CRUD::setRoute(config('backpack.base.route_prefix') . '/post');
         CRUD::setEntityNameStrings('post', 'posts');
 
+        parent::setup();
+        $this->setAccessUsingPermissions();
         $this->crud->addColumns($this->getFieldsData(TRUE));
     }
 
