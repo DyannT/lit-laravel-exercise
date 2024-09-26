@@ -21,7 +21,7 @@ trait CrudPermissionTrait
         }
 
         $role = $user->roles()->where('name', 'like', '%' . $table . '%')->first();
-        $permissions = $role->getAllPermissions()->pluck('name')->toArray();
+        $permissions = empty($role) ? [] : $role->getAllPermissions()->pluck('name')->toArray() ;
         $extraPermission = $user->permissions->pluck('name')->toArray();
         $mergedPermissions = array_unique(array_merge($permissions, $extraPermission));
 
