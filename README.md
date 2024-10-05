@@ -92,6 +92,9 @@ http://127.0.0.1:8081/
 
 
 ########################################################
+docker laravel with kafka
+
+```
 docker file
 version: '2.2'
 services:
@@ -268,7 +271,7 @@ volumes:
 networks:
     backend:
         driver: "bridge"
-
+```
 
 
 
